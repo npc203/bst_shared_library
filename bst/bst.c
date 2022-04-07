@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct node {
-  int key;
-  struct node *left, *right;
-};
+#include "bst.h"
 
 struct node *newNode(int item) {
   struct node *temp = (struct node *)malloc(sizeof(struct node));
@@ -12,7 +8,6 @@ struct node *newNode(int item) {
   temp->left = temp->right = NULL;
   return temp;
 }
-
 
 void inorder(struct node *root) {
   if (root != NULL) {
