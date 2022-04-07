@@ -5,5 +5,5 @@ bst.o: bst.c
 shared: 
 	gcc *.o -shared -o lib_bst.so
 move:
-	sudo cp lib_bst /usr/lib
+	sudo cp lib_bst.so /usr/lib
 	sudo cp bst.h /usr/include
