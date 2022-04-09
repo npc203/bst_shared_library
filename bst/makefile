@@ -1,9 +1,8 @@
-all: bst.o shared move
+TARGET_PATH := ../compiled
+
+all: bst.o shared
 
 bst.o: bst.c
-	gcc -c bst.c -fpic
+	gcc -c bst.c -fpic -o ${TARGET_PATH}/bst.o
 shared: 
-	gcc *.o -shared -o lib_bst.so
-move:
-	sudo cp lib_bst.so /usr/lib
-	sudo cp bst.h /usr/include
+	gcc ${TARGET_PATH}/*.o -shared -o ${TARGET_PATH}/libbst.so
