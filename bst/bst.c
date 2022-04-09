@@ -2,24 +2,24 @@
 #include <stdlib.h>
 #include "bst.h"
 
-struct node *newNode(int item) {
+struct node *createRoot(int item) {
   struct node *temp = (struct node *)malloc(sizeof(struct node));
   temp->key = item;
   temp->left = temp->right = NULL;
   return temp;
 }
 
-void inorder(struct node *root) {
+void printTree(struct node *root) {
   if (root != NULL) {
-    inorder(root->left);
+    printTree(root->left);
     printf("%d  ", root->key);
-    inorder(root->right);
+    printTree(root->right);
   }
 }
 
 
 struct node *insert(struct node *node, int key) {
-  if (node == NULL) return newNode(key);
+  if (node == NULL) return createRoot(key);
   if (key < node->key)
     node->left = insert(node->left, key);
   else
