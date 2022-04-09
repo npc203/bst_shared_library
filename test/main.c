@@ -4,12 +4,15 @@
 
 int main(){
     struct node *root = NULL;
-    root=createRoot(5);
     root = insert(root,8);
     root=insert(root,3);
     root=insert(root,1);
 
-    inorder(root);
+    printTree(root);
+
+    deleteNode(root,3);
+
+    printTree(root);
 
     return 0;
 }
