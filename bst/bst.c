@@ -87,7 +87,7 @@ struct node *delete(struct node *root, int key) {
   return root;
 }
 
-bool *deleteNode(struct node *root, int key) {
+bool deleteNode(struct node *root, int key) {
   if(search(root,key)){
      delete(root,key);
      return true;
