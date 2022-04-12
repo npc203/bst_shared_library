@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "bst.h"
 
-struct node *createRoot(int item) {
+struct node *createNode(int item) {
   struct node *temp = (struct node *)malloc(sizeof(struct node));
   temp->key = item;
   temp->left = temp->right = NULL;
@@ -10,16 +10,20 @@ struct node *createRoot(int item) {
 }
 
 void printTree(struct node *root) {
+  inorder(root);
+}
+
+void inorder(struct node *root) {
   if (root != NULL) {
-    printTree(root->left);
+    inorder(root->left);
     printf("%d  ", root->key);
-    printTree(root->right);
+    inorder(root->right);
   }
 }
 
 
 struct node *insert(struct node *node, int key) {
-  if (node == NULL) return createRoot(key);
+  if (node == NULL) return createNode(key);
   if (key < node->key)
     node->left = insert(node->left, key);
   else
