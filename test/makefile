@@ -1,12 +1,14 @@
+LIB_PATH := ../compiled/
+
 all: main.o link run
 
 main.o:
-	gcc -c main.c
+	gcc -I${LIB_PATH} -c main.c
 
 link:
-	gcc -o main main.o -L. -l_bst 
+	gcc -I${LIB_PATH} -L$(LIB_PATH) -Wl,-rpath=$(LIB_PATH) -Wall -o main main.c -l bst  
 run:
 	./main
 
 clean:
-	rm -f *.o 
+	rm -f *.o main
