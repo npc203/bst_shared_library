@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "bst.h"
 
+void inorder(struct node*);
+
 struct node *createNode(int item) {
   struct node *temp = (struct node *)malloc(sizeof(struct node));
   temp->key = item;
