@@ -43,7 +43,7 @@ struct node *minValueNode(struct node *node) {
   return current;
 }
 
-int search(struct node *root,int key){
+bool search(struct node *root,int key){
    struct node *current = root;
    while(current->key != key){
 	
@@ -87,7 +87,7 @@ struct node *delete(struct node *root, int key) {
   return root;
 }
 
-struct node *deleteNode(struct node *root, int key) {
+bool *deleteNode(struct node *root, int key) {
   if(search(root,key)){
      delete(root,key);
      return true;
