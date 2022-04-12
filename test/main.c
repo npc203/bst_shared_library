@@ -26,7 +26,7 @@ int main(){
             printf("Enter the value to be deleted: ");
             int e;
             if(scanf("%d",&e)){
-                int result=deleteNode(root,e);
+                bool result=deleteNode(root,e);
                 if(result==true){
                     printf("Sucessfully Deleted!!\n");
                 }
