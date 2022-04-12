@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include"bst.h"
+#include<stdbool.h>
 int main(){
     struct node *root = NULL;
     enum OPERATIONS{Insert=1,Delete,Print,Empty,Exit};
@@ -25,8 +26,14 @@ int main(){
             printf("Enter the value to be deleted: ");
             int e;
             if(scanf("%d",&e)){
-            root=deleteNode(root,e);
-            printf("Sucessfully Deleted!!\n");
+                int result=deleteNode(root,e);
+                if(result==true){
+                    printf("Sucessfully Deleted!!\n");
+                }
+                else{
+                    printf("Not Found!!\n");
+                }
+                printf("Sucessfully Deleted!!\n");
             }
             else{
            

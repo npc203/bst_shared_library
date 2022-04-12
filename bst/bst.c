@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bst.h"
+#include<stdbool.h>
 
 void inorder(struct node*);
 
@@ -42,13 +43,33 @@ struct node *minValueNode(struct node *node) {
   return current;
 }
 
-struct node *deleteNode(struct node *root, int key) {
+int search(struct node *root,int key){
+   struct node *current = root;
+   while(current->key != key){
+	
+      if(current != NULL) {
+         if(current->key > key){
+            current = current->left;
+         }
+         else {                
+            current = current->right;
+         }
+	
+         if(current == NULL){
+            return false;
+         }
+      }			
+   }
+   
+   return true;
+}
+
+struct node *delete(struct node *root, int key) {
   if (root == NULL) return root;
   if (key < root->key)
-    root->left = deleteNode(root->left, key);
+    root->left = delete(root->left, key);
   else if (key > root->key)
-    root->right = deleteNode(root->right, key);
-
+    root->right = delete(root->right, key);
   else {
     if (root->left == NULL) {
       struct node *temp = root->right;
@@ -59,12 +80,21 @@ struct node *deleteNode(struct node *root, int key) {
       free(root);
       return temp;
     }
-
     struct node *temp = minValueNode(root->right);
     root->key = temp->key;
-    root->right = deleteNode(root->right, temp->key);
+    root->right = delete(root->right, temp->key);
   }
   return root;
+}
+
+struct node *deleteNode(struct node *root, int key) {
+  if(search(root,key)){
+     delete(root,key);
+     return true;
+  }
+  else{
+     return false;
+  }
 }
 
 

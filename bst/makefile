@@ -8,3 +8,5 @@ shared:
 	gcc ${TARGET_PATH}/*.o -shared -o ${TARGET_PATH}/libbst.so
 move:
 	cp bst.h ${TARGET_PATH}/
+clean:
+	rm ${TARGET_PATH}/*
