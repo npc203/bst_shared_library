@@ -33,7 +33,6 @@ int main(){
                 else{
                     printf("Not Found!!\n");
                 }
-                printf("Sucessfully Deleted!!\n");
             }
             else{
            
