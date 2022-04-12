@@ -1,6 +1,6 @@
 LIB_PATH := ../compiled/
 
-all: main.o link run
+all: clean main.o link run
 
 main.o:
 	gcc -I${LIB_PATH} -c main.c

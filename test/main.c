@@ -1,18 +1,57 @@
 #include<stdio.h>
 #include"bst.h"
-
-
 int main(){
     struct node *root = NULL;
-    root = insert(root,8);
-    root=insert(root,3);
-    root=insert(root,1);
-
-    printTree(root);
-
-    deleteNode(root,3);
-
-    printTree(root);
-
-    return 0;
+    enum OPERATIONS{Insert=1,Delete,Print,Empty,Exit};
+    int c;char s[20];
+    do{
+       printf("Choices 1.Insert 2.Delete 3.Print 4.Empty 5.Exit\n");
+       scanf("%d",&c);
+       switch(c){
+        case Insert:{
+            printf("Enter the value: ");
+            int e;
+            if(scanf("%d",&e)){
+            root=insert(root,e);
+            printf("Sucessfully Inserted!!\n");
+            }
+            else{
+            printf("INVALID!!\n");
+            fgets(s,20,stdin);
+            }
+            break;
+        }
+        case Delete:{
+            printf("Enter the value to be deleted: ");
+            int e;
+            if(scanf("%d",&e)){
+            root=deleteNode(root,e);
+            printf("Sucessfully Deleted!!\n");
+            }
+            else{
+           
+            printf("INVALID!!\n");
+            fgets(s,20,stdin);
+            }
+            break;
+        }
+        case Print:{
+            printf("\nInOrder traversal of BST: ");
+            printTree(root);
+            printf("\n");
+            break;
+        }
+        case Empty:{
+            root==NULL?printf("Tree is Empty!!\n"):printf("Tree is NOT Empty!!\n");
+            break;
+        }
+        case Exit:{
+            break;
+        }
+        default:{
+            printf("Wrong Choice!!\n");
+            break;
+        }
+       }
+    }while(c!=5);
 }
