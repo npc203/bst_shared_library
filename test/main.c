@@ -7,27 +7,37 @@ int main(){
     int c;char s[20];
     do{
        printf("Choices 1.Insert 2.Delete 3.Print 4.Empty 5.Exit\n");
-       scanf("%d",&c);
+       fseek(stdin,0,SEEK_END);
+       if(scanf("%d",&c)){
+	}
+       else{
+           printf("INVALID CHOICE\n");
+           fgets(s,20,stdin);
+           continue;
+       }
        switch(c){
         case Insert:{
             printf("Enter the value: ");
             int e;
+            fseek(stdin,0,SEEK_END);
             if(scanf("%d",&e)){
-            root=insert(root,e);
-            printf("Sucessfully Inserted!!\n");
+            	root=insert(root,e);
+            	printf("Sucessfully Inserted!!\n");
             }
             else{
-            printf("INVALID!!\n");
-            fgets(s,20,stdin);
+            	printf("INVALID!!\n");
+            	fgets(s,20,stdin);
             }
             break;
         }
         case Delete:{
             printf("Enter the value to be deleted: ");
             int e;
+            fseek(stdin,0,SEEK_END);
             if(scanf("%d",&e)){
-                bool result=deleteNode(root,e);
-                if(result==true){
+                struct pair result=deleteNode(root,e);
+                root=result.node;
+                if(result.found==true){
                     printf("Sucessfully Deleted!!\n");
                 }
                 else{
@@ -35,9 +45,8 @@ int main(){
                 }
             }
             else{
-           
-            printf("INVALID!!\n");
-            fgets(s,20,stdin);
+            	printf("INVALID!!\n");
+               fgets(s,20,stdin);
             }
             break;
         }

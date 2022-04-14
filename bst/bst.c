@@ -4,7 +4,6 @@
 #include<stdbool.h>
 
 void inorder(struct node*);
-
 struct node *createNode(int item) {
   struct node *temp = (struct node *)malloc(sizeof(struct node));
   temp->key = item;
@@ -87,13 +86,15 @@ struct node *delete(struct node *root, int key) {
   return root;
 }
 
-bool deleteNode(struct node *root, int key) {
+struct pair deleteNode(struct node *root, int key) {
   if(search(root,key)){
-     delete(root,key);
-     return true;
+     root=delete(root,key);
+     struct pair p={true,root};
+     return p;
   }
   else{
-     return false;
+     struct pair p={false,root}; 
+     return p;
   }
 }
 
