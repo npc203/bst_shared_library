@@ -12,6 +12,10 @@ struct node *createNode(int item) {
 }
 
 void printTree(struct node *root) {
+  if(root==NULL){
+    printf("Tree is empty");
+    return;
+  }
   inorder(root);
 }
 
@@ -86,15 +90,27 @@ struct node *delete(struct node *root, int key) {
   return root;
 }
 
-struct pair deleteNode(struct node *root, int key) {
+struct node *deleteNode(struct node *root, int key) {
+  if(root==NULL)
+    return NULL;
   if(search(root,key)){
      root=delete(root,key);
-     struct pair p={true,root};
-     return p;
+     return root;
   }
   else{
-     struct pair p={false,root}; 
-     return p;
+     return NULL;
+  }
+}
+
+struct node *insertNode(struct node *root, int key) {
+  if(root==NULL)
+    return insert(root,key);
+  if(!search(root,key)){
+     root=insert(root,key);
+     return root;
+  }
+  else{
+     return NULL;
   }
 }
 

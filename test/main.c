@@ -21,8 +21,12 @@ int main(){
             int e;
             fseek(stdin,0,SEEK_END);
             if(scanf("%d",&e)){
-            	root=insert(root,e);
-            	printf("Sucessfully Inserted!!\n");
+            	struct node *result=insertNode(root,e);
+                if(result!=NULL){
+                    root=result;
+            	    printf("Sucessfully Inserted!!\n");
+                }else
+                    printf("Duplicate Element!!!\n");
             }
             else{
             	printf("INVALID!!\n");
@@ -35,9 +39,22 @@ int main(){
             int e;
             fseek(stdin,0,SEEK_END);
             if(scanf("%d",&e)){
-                struct pair result=deleteNode(root,e);
-                root=result.node;
-                if(result.found==true){
+                if(root==NULL){
+                    printf("Tree is empty\n");
+                    break;
+                }
+                if(e==root->key){
+                    if(root->left==NULL && root->right==NULL){
+                        deleteNode(root,e);
+                        root=NULL;
+                        printf("Sucessfully Deleted!!\n");
+                        break;
+                    }
+                }
+                struct node *result=deleteNode(root,e);
+                
+                if(result!=NULL){
+                    root=result;
                     printf("Sucessfully Deleted!!\n");
                 }
                 else{
