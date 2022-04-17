@@ -1,7 +1,32 @@
 #include<stdio.h>
-#include"bst.h"
 #include<stdbool.h>
+#include <dlfcn.h>
+#include<stdlib.h>
+#include"bst.h"
+
 int main(){
+
+    void *handle;
+    void (*printTree)(struct node*);
+    struct node *(*insertNode)(struct node*, int);
+    struct node *(*deleteNode)(struct node*, int);
+
+    char *error;
+
+    handle = dlopen ("../compiled/libbst.so", RTLD_LAZY );
+    if (!handle) {
+        fputs (dlerror(), stderr);
+        exit(1);
+    }
+
+    insertNode = dlsym(handle, "insertNode");
+    printTree = dlsym(handle, "printTree");
+    deleteNode = dlsym(handle, "deleteNode");
+    if ((error = dlerror()) != NULL)  {
+        fputs(error, stderr);
+        exit(1);
+    }
+
     struct node *root = NULL;
     enum OPERATIONS{Insert=1,Delete,Print,Empty,Exit};
     int c;char s[20];
@@ -86,4 +111,5 @@ int main(){
         }
        }
     }while(c!=5);
+    dlclose(handle);
 }
