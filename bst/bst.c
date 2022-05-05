@@ -4,7 +4,6 @@
 #include<stdbool.h>
 
 void inorder(struct node*);
-
 struct node *createNode(int item) {
   struct node *temp = (struct node *)malloc(sizeof(struct node));
   temp->key = item;
@@ -13,6 +12,10 @@ struct node *createNode(int item) {
 }
 
 void printTree(struct node *root) {
+  if(root==NULL){
+    printf("Tree is empty");
+    return;
+  }
   inorder(root);
 }
 
@@ -87,13 +90,27 @@ struct node *delete(struct node *root, int key) {
   return root;
 }
 
-bool deleteNode(struct node *root, int key) {
+struct node *deleteNode(struct node *root, int key) {
+  if(root==NULL)
+    return NULL;
   if(search(root,key)){
-     delete(root,key);
-     return true;
+     root=delete(root,key);
+     return root;
   }
   else{
-     return false;
+     return NULL;
+  }
+}
+
+struct node *insertNode(struct node *root, int key) {
+  if(root==NULL)
+    return insert(root,key);
+  if(!search(root,key)){
+     root=insert(root,key);
+     return root;
+  }
+  else{
+     return NULL;
   }
 }
 
