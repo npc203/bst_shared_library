@@ -7,7 +7,7 @@ pipeline
         {
             steps {
                 echo 'starting make build'
-                make build
+                sh 'make build'
             }
         }
     }
