@@ -13,7 +13,7 @@ pipeline
     }
     post {
         always {
-            archiveArtifacts artifacts: 'compiled/*', fingerprint: true
+            archiveArtifacts artifacts: 'compiled/*'
         }
 
         success {
@@ -21,7 +21,7 @@ pipeline
         }
 
         failure {
-                slackSend failOnError:true message:"Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+                slackSend failOnError:true, message:"Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
     }
 }
